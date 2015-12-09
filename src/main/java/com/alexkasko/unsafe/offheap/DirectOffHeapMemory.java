@@ -252,7 +252,7 @@ class DirectOffHeapMemory extends OffHeapMemory {
     @Override
     public void copy(long offset, OffHeapMemory destination, long destOffset, long bytes) {
         DirectOffHeapMemory dest = (DirectOffHeapMemory) destination;
-        bb.clear().position((int) offset);
+        bb.clear().position((int) offset).limit((int) (offset + bytes));
         dest.bb.clear().position((int) destOffset);
         dest.bb.put(bb);
     }
